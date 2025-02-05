@@ -15,7 +15,7 @@ zipFileName = "source.zip"
 zipExtractLoc = "F:/Learn/Data_Engineering/Projects/ETL_Project/Download/Data/"
 
 #Writing a log files
-file = open("log_file.txt", "a")
+file = open("ETL_Project/Logs/log_file.txt", "a")
 file.write('\n-----------------------------' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + '-----------------------------')
 file.write('\n' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' -- ' + 'ETL process started')
 file.write('\n' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' -- ' + 'File download started')
@@ -120,7 +120,7 @@ combinedDF.index = combinedDF.index + 1
 #Data loading to CSV
 file.write('\n' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' -- ' + 'Data loading phase started')
 curDate = datetime.datetime.today().strftime('%Y_%m_%d_%H_%M_%S')
-csvFilename = 'transformed_data_' + curDate + '.csv'
+csvFilename = 'ETL_Project/OutData/transformed_data_' + curDate + '.csv'
 combinedDF.to_csv(csvFilename, index_label='S.no')
 file.write('\n' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' -- ' + 'Data loaded to - ' + csvFilename)
 file.write('\n' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' -- ' + 'Data loading phase completed')

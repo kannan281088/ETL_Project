@@ -53,6 +53,8 @@ def exportCSVData():
         for name in glob.glob(str(zipExtractLoc) + '*.csv'):    
             file.write('\n' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' -- ' + 'Processing - ' + fileOper.path.basename(name))
             csvDF = pd.concat([csvDF, pd.read_csv(name)],ignore_index=True)
+            file.write('\n' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' -- ' + str(pd.read_csv(name).shape[0]) + ' records found in ' + fileOper.path.basename(name))
+        file.write('\n' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' -- Total ' + str(csvDF.shape[0]) + ' records found in CSV files')
         file.write('\n' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' -- ' + 'Processing CSV files completed')
         return csvDF
     except Exception as e:        
@@ -65,7 +67,9 @@ def exportJsonData():
         jsonDF=pd.DataFrame()
         for name in glob.glob(str(zipExtractLoc) + '*.json'):  
             file.write('\n' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' -- ' + 'Processing - ' + fileOper.path.basename(name))
-            jsonDF = pd.concat([jsonDF, pd.read_json(name, lines=True)],ignore_index=True)        
+            jsonDF = pd.concat([jsonDF, pd.read_json(name, lines=True)],ignore_index=True)
+            file.write('\n' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' -- ' + str(pd.read_json(name, lines=True).shape[0]) + ' records found in ' + fileOper.path.basename(name))        
+        file.write('\n' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' -- Total ' + str(jsonDF.shape[0]) + ' records found in JSON files')
         file.write('\n' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' -- ' + 'Processing JSON files completed')
         return jsonDF        
     except Exception as e:        
@@ -79,6 +83,8 @@ def exportXMLData():
         for name in glob.glob(str(zipExtractLoc) + '*.xml'): 
             file.write('\n' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' -- ' + 'Processing - ' + fileOper.path.basename(name))
             xmlDF = pd.concat([xmlDF, pd.read_xml(name)],ignore_index=True)
+            file.write('\n' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' -- ' + str(pd.read_xml(name).shape[0]) + ' records found in ' + fileOper.path.basename(name))  
+        file.write('\n' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' -- Total ' + str(xmlDF.shape[0]) + ' records found in XML files')
         file.write('\n' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' -- ' + 'Processing XML files completed')
         return xmlDF
     except Exception as e:        
@@ -89,6 +95,7 @@ combinedDF = pd.DataFrame()
 combinedDF = pd.concat([exportCSVData(), exportJsonData(), exportXMLData()], ignore_index=True)
 
 file.write('\n' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' -- ' + 'Combined CSV, JSON, XML files data')
+file.write('\n' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' -- Total Combined record ' + str(combinedDF.shape[0]))
 file.write('\n' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' -- ' + 'Data extraction phase completed')
 file.write('\n' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' -- ' + 'Data transformation phase started')
 
@@ -110,7 +117,7 @@ file.write('\n' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' --
 file.write('\n' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' -- ' + 'Checking for duplicates')
 dupDF = combinedDF.duplicated()
 if combinedDF[dupDF].shape[0] != 0:
-    file.write('\n' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' -- ' + 'Removing the duplicate data')
+    file.write('\n' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' -- ' + 'Removed ' + str(combinedDF[dupDF].shape[0]) + ' duplicate data')
     combinedDF.drop_duplicates(inplace=True)
 
 #Reseting the index
@@ -122,7 +129,7 @@ file.write('\n' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' --
 curDate = datetime.datetime.today().strftime('%Y_%m_%d_%H_%M_%S')
 csvFilename = 'ETL_Project/OutData/transformed_data_' + curDate + '.csv'
 combinedDF.to_csv(csvFilename, index_label='S.no')
-file.write('\n' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' -- ' + 'Data loaded to - ' + csvFilename)
+file.write('\n' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' -- ' + str(combinedDF.shape[0]) + ' Data loaded to - ' + csvFilename)
 file.write('\n' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' -- ' + 'Data loading phase completed')
 file.write('\n' + datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' -- ' + 'ETL process completed')
 file.write('\n---------------------------------------------------------------------------------------------------------')

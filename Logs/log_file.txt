@@ -1,0 +1,49 @@
+
+-----------------------------2025-02-19 11:09:40-----------------------------
+2025-02-19 11:09:40 -- ETL process started
+2025-02-19 11:09:40 -- File download started
+2025-02-19 11:09:42 -- File download completed
+2025-02-19 11:09:42 -- Zip extraction started
+2025-02-19 11:09:42 -- Zip extraction completed
+2025-02-19 11:09:42 -- Data extraction phase started
+2025-02-19 11:09:42 -- Started processing CSV files
+2025-02-19 11:09:42 -- Processing - source1.csv
+2025-02-19 11:09:42 -- 5 records found in source1.csv
+2025-02-19 11:09:42 -- Processing - source2.csv
+2025-02-19 11:09:42 -- 5 records found in source2.csv
+2025-02-19 11:09:42 -- Processing - source3.csv
+2025-02-19 11:09:42 -- 5 records found in source3.csv
+2025-02-19 11:09:42 -- Total 15 records found in CSV files
+2025-02-19 11:09:42 -- Processing CSV files completed
+2025-02-19 11:09:42 -- Started processing JSON files
+2025-02-19 11:09:42 -- Processing - source1.json
+2025-02-19 11:09:42 -- 4 records found in source1.json
+2025-02-19 11:09:42 -- Processing - source2.json
+2025-02-19 11:09:42 -- 4 records found in source2.json
+2025-02-19 11:09:42 -- Processing - source3.json
+2025-02-19 11:09:42 -- 4 records found in source3.json
+2025-02-19 11:09:42 -- Total 12 records found in JSON files
+2025-02-19 11:09:42 -- Processing JSON files completed
+2025-02-19 11:09:42 -- Started processing XML files
+2025-02-19 11:09:42 -- Processing - source1.xml
+2025-02-19 11:09:42 -- 4 records found in source1.xml
+2025-02-19 11:09:42 -- Processing - source2.xml
+2025-02-19 11:09:42 -- 4 records found in source2.xml
+2025-02-19 11:09:42 -- Processing - source3.xml
+2025-02-19 11:09:42 -- 4 records found in source3.xml
+2025-02-19 11:09:42 -- Total 12 records found in XML files
+2025-02-19 11:09:42 -- Processing XML files completed
+2025-02-19 11:09:42 -- Combined CSV, JSON, XML files data
+2025-02-19 11:09:42 -- Total Combined record 39
+2025-02-19 11:09:42 -- Data extraction phase completed
+2025-02-19 11:09:42 -- Data transformation phase started
+2025-02-19 11:09:42 -- Converted height, weight column to float
+2025-02-19 11:09:42 -- Transformed Heights from inches to meters
+2025-02-19 11:09:42 -- Transformed Weights from pounds to kilograms
+2025-02-19 11:09:42 -- Checking for duplicates
+2025-02-19 11:09:42 -- Removed 26 duplicate data
+2025-02-19 11:09:42 -- Data loading phase started
+2025-02-19 11:09:42 -- 13 Data loaded to - ETL_Project/OutData/transformed_data_2025_02_19_11_09_42.csv
+2025-02-19 11:09:42 -- Data loading phase completed
+2025-02-19 11:09:42 -- ETL process completed
+---------------------------------------------------------------------------------------------------------
